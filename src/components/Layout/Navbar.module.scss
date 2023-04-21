@@ -1,0 +1,43 @@
+@use '../../utils/styles.variables' as styles;
+
+nav {
+  width: 100%;
+
+  background-color: styles.$primaryDarkColor;
+
+  .navbar {
+    max-width: styles.$contentMaxWidth;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4px 12px;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .searchbar {
+      margin-left: auto;
+
+      display: flex;
+      align-items: center;
+
+      button {
+        margin: 0 8px;
+
+        display: none;
+
+        @media only screen and (max-width: styles.$smallScreenSize) {
+          display: block;
+        }
+      }
+
+      input {
+        width: 350px;
+
+        @media only screen and (max-width: styles.$smallScreenSize) {
+          width: 70vw;
+        }
+      }
+    }
+  }
+}

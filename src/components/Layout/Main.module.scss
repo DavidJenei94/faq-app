@@ -1,0 +1,8 @@
+@use '../../utils/styles.variables' as styles;
+
+.main {
+  max-width: styles.$contentMaxWidth;
+  margin: 16px auto;
+
+  background-color: styles.$primaryColor;
+}

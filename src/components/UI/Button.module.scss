@@ -1,0 +1,46 @@
+@use '../../utils/styles.variables' as styles;
+
+.button {
+  padding: 4px;
+  border-radius: 8px;
+
+  // color: styles.$primaryLightColor;
+  background-color: styles.$primaryLightColor;
+
+  border: 0;
+  box-shadow: styles.$mainLightBoxShadow;
+
+  p {
+    padding: 4px;
+    margin: 0;
+    font-size: 20px;
+
+    & > a {
+      text-decoration: none;
+      color: inherit;
+      font-size: 16px;
+    }
+  }
+
+  img {
+    height: 20px;
+    width: 20px;
+    margin: 0px;
+
+    position: relative;
+    top: 1px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: styles.$mainStrongBoxShadow;
+  }
+
+  &:disabled {
+    color: styles.$disabledColor;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+}

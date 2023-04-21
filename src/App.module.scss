@@ -1,0 +1,8 @@
+@use './utils/styles.variables' as styles;
+
+.app {
+  min-height: 100vh;
+  
+  background-color: styles.$primaryColor;
+  color: styles.$contrastColor;
+}

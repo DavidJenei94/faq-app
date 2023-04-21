@@ -1,5 +1,12 @@
-html {
+html,
+body {
   margin: 0;
+
   font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
     Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
 }
