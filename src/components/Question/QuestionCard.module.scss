@@ -1,0 +1,9 @@
+@use "../../utils/styles.variables" as styles;
+
+.card {
+  width: 300px;
+  padding: 4px;
+  border: 1px solid white;
+  border-radius: 4px;
+  box-shadow: styles.$mainLightBoxShadow;
+}
