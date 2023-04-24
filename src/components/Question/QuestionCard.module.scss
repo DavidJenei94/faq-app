@@ -1,9 +1,47 @@
-@use "../../utils/styles.variables" as styles;
+@use '../../utils/styles.variables' as styles;
 
 .card {
   width: 300px;
-  padding: 4px;
-  border: 1px solid white;
+  padding: 12px;
+  border: 1px solid styles.$contrastColor;
   border-radius: 4px;
   box-shadow: styles.$mainLightBoxShadow;
+
+  img {
+    width: 16px;
+  }
+
+  &:first-child p {
+    margin-right: 8px;
+  }
+
+  .upvote,
+  .downvote {
+    display: inline;
+  }
+
+  .upvote {
+    margin-right: 8px;
+  }
+
+  opacity: 0;
+  transform: translateY(100px);
+  animation: slide-up 0.5s ease-in-out forwards;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: (0.15s * ($i - 1));
+    }
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

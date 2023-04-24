@@ -1,5 +1,10 @@
+import { Link } from 'react-router-dom';
+
 import { Question } from '../../models/Question.model';
+
 import styles from './QuestionCard.module.scss';
+import upvoteIcon from '../../assets/icons/upvote-icon.png';
+import downvoteIcon from '../../assets/icons/downvote-icon.png';
 
 interface QuestionCardProps {
   question: Question;
@@ -8,10 +13,12 @@ interface QuestionCardProps {
 const QuestionCard = ({ question }: QuestionCardProps) => {
   return (
     <div className={styles.card}>
-      <h2>{question.question}</h2>
+      <Link to={`question/${question.id}`}>{question.question}</Link>
       <p>Comments: {question.comments.length}</p>
-      <p>Upvotes {question.upvotes}</p>
-      <p>Downvotes: {question.downvotes}</p>
+      <img src={upvoteIcon} alt="upvote icon" />
+      <p className={styles.upvote}>{question.upvotes}</p>
+      <img src={downvoteIcon} alt="downvote icon" />
+      <p className={styles.downvote}>{question.downvotes}</p>
     </div>
   );
 };

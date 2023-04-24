@@ -1,10 +1,10 @@
 @use '../../utils/styles.variables' as styles;
 
-.button {
+@mixin defaultButton {
   padding: 4px;
   border-radius: 8px;
 
-  // color: styles.$primaryLightColor;
+  color: styles.$contrastColor;
   background-color: styles.$primaryLightColor;
 
   border: 0;
@@ -41,6 +41,11 @@
 
     &:hover {
       cursor: default;
+      box-shadow: styles.$mainLightBoxShadow;
     }
   }
+}
+
+.button {
+  @include defaultButton;
 }
