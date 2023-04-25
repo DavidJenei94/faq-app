@@ -9,6 +9,11 @@ nav {
 
   background-color: styles.$primaryDarkColor;
 
+  a {
+    text-decoration: underline;
+    color: styles.$contrastColor;
+  }
+
   .navbar {
     max-width: styles.$contentMaxWidth;
     width: 100%;

@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useWindowDimensions } from '../../hooks/useDimensions';
+import { smallScreenWidth } from '../../utils/general.utils';
+import { Link } from 'react-router-dom';
 
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 
 import styles from './Navbar.module.scss';
 import searchButton from '../../assets/icons/search-icon.png';
-import { useWindowDimensions } from '../../hooks/useDimensions';
-import { smallScreenWidth } from '../../utils/general.utils';
 
 const Navbar = () => {
   const { width } = useWindowDimensions();
@@ -30,13 +31,13 @@ const Navbar = () => {
   return (
     <nav>
       <div className={styles.navbar}>
-        <p>FAQ</p>
+        <Link to='/'>FAQ</Link>
         <div className={styles.searchbar}>
           {showSearchbar && (
             <Input placeholder="Search for keywords or tags with # like #animal" />
           )}
           <Button onClick={searchMenuHandler}>
-            <img src={searchButton} alt='Search button' />
+            <img src={searchButton} alt="Search button" />
           </Button>
         </div>
       </div>
