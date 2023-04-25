@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux-hooks';
 
 import { Question } from '../../models/Question.model';
 
@@ -11,10 +12,16 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = ({ question }: QuestionCardProps) => {
+  const answers = useAppSelector((state) => state.answers);
+
+  const answerNo = answers.filter(
+    (answer) => answer.questionId === question.id
+  ).length;
+
   return (
     <div className={styles.card}>
       <Link to={`question/${question.id}`}>{question.questionTitle}</Link>
-      <p>Comments: {question.comments.length}</p>
+      <p>Comments: {answerNo}</p>
       <img src={upvoteIcon} alt="upvote icon" />
       <p className={styles.upvote}>{question.upvotes}</p>
       <img src={downvoteIcon} alt="downvote icon" />

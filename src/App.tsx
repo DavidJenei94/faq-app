@@ -1,4 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { useAppDispatch } from './hooks/redux-hooks';
+import { faqActions } from './store/faq-redux';
+import { useEffect } from 'react';
 
 import Main from './components/Layout/Main';
 import Navbar from './components/Layout/Navbar';
@@ -7,10 +10,6 @@ import List from './components/Question/List';
 import CreateQuestion from './components/Question/CreateQuestion';
 
 import styles from './App.module.scss';
-import { defaultQuestion } from './models/Question.model';
-import { useAppDispatch } from './hooks/redux-hooks';
-import { faqActions } from './store/faq-redux';
-import { useEffect } from 'react';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,7 +19,12 @@ function App() {
     if (questionsStored) {
       dispatch(faqActions.setQuestions(JSON.parse(questionsStored)));
     }
-  }, []);
+
+    const answersStored = localStorage.getItem('answers');
+    if (answersStored) {
+      dispatch(faqActions.setAnswers(JSON.parse(answersStored)));
+    }
+  }, [dispatch]);
 
   const router = createBrowserRouter([
     {

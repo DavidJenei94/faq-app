@@ -5,7 +5,6 @@ export interface Question {
   creationDate: Date | null;
   upvotes: number;
   downvotes: number;
-  comments: string[];
 }
 
 export const defaultQuestion = {
@@ -15,5 +14,4 @@ export const defaultQuestion = {
   creationDate: null,
   upvotes: 0,
   downvotes: 0,
-  comments: [],
 };

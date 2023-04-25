@@ -25,12 +25,12 @@ const faqSlice = createSlice({
     addQuestion: (state: FaqState, action: PayloadAction<Question>) => {
       state.questions = [...state.questions, action.payload];
 
-      console.log(state.questions);
-      
       localStorage.setItem('questions', JSON.stringify(state.questions));
     },
     addAnswer: (state: FaqState, action: PayloadAction<Answer>) => {
       state.answers = [...state.answers, action.payload];
+
+      localStorage.setItem('answers', JSON.stringify(state.answers));
     },
   },
 });

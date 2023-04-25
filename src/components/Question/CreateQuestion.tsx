@@ -3,6 +3,7 @@ import { faqActions } from '../../store/faq-redux';
 import { Question, defaultQuestion } from '../../models/Question.model';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
+import { selectNewId } from '../../utils/general.utils';
 
 import Input from '../UI/Input';
 import Textarea from '../UI/Textarea';
@@ -34,10 +35,7 @@ const CreateQuestion = () => {
 
     const newQuestion: Question = {
       ...defaultQuestion,
-      id:
-        questions.length === 0
-          ? 1
-          : Math.max(questions[questions.length - 1].id + 1),
+      id: selectNewId(questions),
       questionTitle,
       questionDetails,
     };
