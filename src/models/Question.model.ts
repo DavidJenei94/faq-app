@@ -1,6 +1,7 @@
 export interface Question {
   id: number;
-  question: string;
+  questionTitle: string;
+  questionDetails: string;
   creationDate: Date | null;
   upvotes: number;
   downvotes: number;
@@ -9,7 +10,8 @@ export interface Question {
 
 export const defaultQuestion = {
   id: 0,
-  question: 'Ask a question',
+  questionTitle: 'Ask a question?',
+  questionDetails: 'Details about question',
   creationDate: null,
   upvotes: 0,
   downvotes: 0,

@@ -1,0 +1,29 @@
+@use '../../utils/styles.variables' as styles;
+
+@mixin defaultTextarea {
+  padding: 8px 16px;
+  color: styles.$contrastColor;
+  background-color: styles.$primaryLightColor;
+  border: 0 solid transparent;
+  box-shadow: styles.$mainLightBoxShadow;
+  border-radius: 8px;
+  font-size: 14px;
+
+  &:hover {
+    cursor: text;
+    box-shadow: styles.$mainStrongBoxShadow;
+  }
+
+  &::placeholder {
+    color: styles.$contrastColor;
+    opacity: 0.65;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+}
+
+.textarea {
+  @include defaultTextarea;
+}

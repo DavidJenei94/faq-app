@@ -13,7 +13,7 @@ interface QuestionCardProps {
 const QuestionCard = ({ question }: QuestionCardProps) => {
   return (
     <div className={styles.card}>
-      <Link to={`question/${question.id}`}>{question.question}</Link>
+      <Link to={`question/${question.id}`}>{question.questionTitle}</Link>
       <p>Comments: {question.comments.length}</p>
       <img src={upvoteIcon} alt="upvote icon" />
       <p className={styles.upvote}>{question.upvotes}</p>

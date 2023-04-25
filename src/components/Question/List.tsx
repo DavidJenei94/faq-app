@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Question, defaultQuestion } from '../../models/Question.model';
+import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux-hooks';
 
 import QuestionCard from '../Question/QuestionCard';
 import Button from '../UI/Button';
@@ -8,67 +9,9 @@ import styles from './List.module.scss';
 import addIcon from '../../assets/icons/add-icon.png';
 
 const List = () => {
-  // const [questions, setQuestions] = useState<Question[]>([]);
+  const navigate = useNavigate();
 
-  const questions = [
-    defaultQuestion,
-    {
-      id: 1,
-      question: 'New question',
-      creationDate: null,
-      upvotes: 2,
-      downvotes: 2,
-      comments: ['asd'],
-    },
-    {
-      id: 2,
-      question: 'Random question',
-      creationDate: null,
-      upvotes: 3,
-      downvotes: 3,
-      comments: ['asd', 'few'],
-    },
-    {
-      id: 3,
-      question: 'New question',
-      creationDate: null,
-      upvotes: 2,
-      downvotes: 2,
-      comments: ['asd'],
-    },
-    {
-      id: 4,
-      question: 'Random question',
-      creationDate: null,
-      upvotes: 3,
-      downvotes: 3,
-      comments: ['asd', 'few'],
-    },
-    {
-      id: 5,
-      question: 'Random question',
-      creationDate: null,
-      upvotes: 3,
-      downvotes: 3,
-      comments: ['asd', 'few'],
-    },
-    {
-      id: 6,
-      question: 'New question',
-      creationDate: null,
-      upvotes: 2,
-      downvotes: 2,
-      comments: ['asd'],
-    },
-    {
-      id: 7,
-      question: 'Random question',
-      creationDate: null,
-      upvotes: 3,
-      downvotes: 3,
-      comments: ['asd', 'few'],
-    },
-  ];
+  const questions = useAppSelector((state) => state.questions);
 
   const [page, setPage] = useState(0);
   const questionsPerPage = 5;
@@ -85,6 +28,10 @@ const List = () => {
     );
   };
 
+  const handleCreateQuestion = () => {
+    navigate('/question/create');
+  };
+
   return (
     <div className={styles.container}>
       <h1>Questions:</h1>
@@ -97,7 +44,7 @@ const List = () => {
         <Button onClick={handlePrevPage} disabled={page === 0}>
           Previous
         </Button>
-        {`${startIndex + 1}-${
+        {`${questions.length === 0 ? '0' : startIndex + 1}-${
           endIndex >= questions.length ? questions.length : endIndex
         } / ${questions.length}`}
         <Button
@@ -108,7 +55,7 @@ const List = () => {
         </Button>
       </div>
       <div className={styles['create-question']}>
-        <Button title="Create new question">
+        <Button title="Create new question" onClick={handleCreateQuestion}>
           <img src={addIcon} alt="Create new question button" />
         </Button>
       </div>
