@@ -49,6 +49,38 @@ const faqSlice = createSlice({
 
       localStorage.setItem('answers', JSON.stringify(state.answers));
     },
+    editAnswer: (state: FaqState, action: PayloadAction<Answer>) => {
+      const answerId = state.answers.findIndex(
+        (answer) => answer.id === action.payload.id
+      );
+      state.answers[answerId] = action.payload;
+
+      localStorage.setItem('answers', JSON.stringify(state.answers));
+    },
+    deleteAnswer: (state: FaqState, action: PayloadAction<number>) => {
+      const answerId = state.answers.findIndex(
+        (answer) => answer.id === action.payload
+      );
+      state.answers.splice(answerId, 1);
+
+      localStorage.setItem('answers', JSON.stringify(state.answers));
+    },
+    voteAnswer: (
+      state: FaqState,
+      action: PayloadAction<{ id: number; vote: number }>
+    ) => {
+      const answerId = state.answers.findIndex(
+        (answer) => answer.id === action.payload.id
+      );
+      if (action.payload.vote >= 1) {
+        state.answers[answerId].upvotes += action.payload.vote;
+      }
+      if (action.payload.vote <= -1) {
+        state.answers[answerId].downvotes -= action.payload.vote;
+      }
+
+      localStorage.setItem('answers', JSON.stringify(state.answers));
+    },
   },
 });
 

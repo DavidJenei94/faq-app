@@ -1,0 +1,21 @@
+.votes {
+  margin: 12px;
+
+  button {
+    padding: 6px;
+    margin-right: 8px;
+
+    img {
+      width: 16px;
+    }
+  }
+
+  .upvote,
+  .downvote {
+    display: inline;
+  }
+
+  .upvote {
+    margin-right: 8px;
+  }
+}
