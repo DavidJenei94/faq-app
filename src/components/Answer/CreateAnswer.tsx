@@ -28,6 +28,10 @@ const CreateAnswer = ({ questionId }: CreateAnswerProp) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    if (answer === '') {
+      return;
+    }
+
     const newAnswer = {
       ...defaultAnswer,
       id: selectNewId(answers),
@@ -42,7 +46,12 @@ const CreateAnswer = ({ questionId }: CreateAnswerProp) => {
     <form onSubmit={handleSubmit} className={styles.form}>
       <label>New answer:</label>
       <br />
-      <Textarea value={answer} onChange={handleAnswerChange} placeholder='Add new answer...'/>
+      <Textarea
+        value={answer}
+        onChange={handleAnswerChange}
+        placeholder="Add new answer..."
+        required
+      />
       <br />
       <Button type="submit">Answer</Button>
     </form>
