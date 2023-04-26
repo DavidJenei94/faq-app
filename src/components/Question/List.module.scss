@@ -6,6 +6,13 @@
     margin-top: 0;
   }
 
+  .filter {
+    p {
+      display: inline;
+      margin-right: 12px;
+    }
+  }
+
   .list {
     display: flex;
     flex-wrap: wrap;

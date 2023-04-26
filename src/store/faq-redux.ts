@@ -6,12 +6,14 @@ export interface FaqState {
   initialized: boolean;
   questions: Question[];
   answers: Answer[];
+  questionSearch: string;
 }
 
 const initialFaqState: FaqState = {
   initialized: false,
   questions: [],
   answers: [],
+  questionSearch: '',
 };
 
 const faqSlice = createSlice({
@@ -112,6 +114,9 @@ const faqSlice = createSlice({
       }
 
       localStorage.setItem('answers', JSON.stringify(state.answers));
+    },
+    setQuestionSearch: (state: FaqState, action: PayloadAction<string>) => {
+      state.questionSearch = action.payload;
     },
   },
 });

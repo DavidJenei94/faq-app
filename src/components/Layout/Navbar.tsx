@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useWindowDimensions } from '../../hooks/useDimensions';
 import { smallScreenWidth } from '../../utils/general.utils';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { faqActions } from '../../store/faq-redux';
 
 import Input from '../UI/Input';
 import Button from '../UI/Button';
@@ -10,8 +12,14 @@ import styles from './Navbar.module.scss';
 import searchButton from '../../assets/icons/search-icon.png';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+  const questionSearch = useAppSelector((state) => state.questionSearch);
+
   const { width } = useWindowDimensions();
 
+  const [searchField, setSearchField] = useState<string>('');
   const [searchMenuVisisble, setSearchMenuVisisble] = useState<boolean>(false);
 
   // Switch off small screen search bar visibility when screen is larger again
@@ -22,6 +30,34 @@ const Navbar = () => {
     }
   }, [width]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      dispatch(faqActions.setQuestionSearch(searchField));
+    }, 250);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [searchField, dispatch]);
+
+  useEffect(() => {
+    if (questionSearch === '') {
+      setSearchField('');
+    }
+  }, [questionSearch]);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchField(event.target.value);
+  };
+
+  const handleSearchKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === 'Enter') {
+      navigate('/');
+    }
+  };
+
   const searchMenuHandler = () => {
     setSearchMenuVisisble((prevState) => !prevState);
   };
@@ -31,10 +67,15 @@ const Navbar = () => {
   return (
     <nav>
       <div className={styles.navbar}>
-        <Link to='/'>FAQ</Link>
+        <Link to="/">FAQ</Link>
         <div className={styles.searchbar}>
           {showSearchbar && (
-            <Input placeholder="Search for keywords or tags with # like #animal" />
+            <Input
+              placeholder="Search for keywords..."
+              value={searchField}
+              onChange={handleSearchChange}
+              onKeyDown={handleSearchKeyDown}
+            />
           )}
           <Button onClick={searchMenuHandler}>
             <img src={searchButton} alt="Search button" />
