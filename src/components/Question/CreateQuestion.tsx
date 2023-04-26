@@ -58,7 +58,7 @@ const CreateQuestion = () => {
 
   return (
     <div className={styles.add}>
-      <h1>Ask Question</h1>
+      <h1>Ask any question</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Input
           type="text"

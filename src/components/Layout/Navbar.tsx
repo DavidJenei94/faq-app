@@ -67,7 +67,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className={styles.navbar}>
-        <Link to="/">FAQ</Link>
+        <Link to="/"><h1>FAQ</h1></Link>
         <div className={styles.searchbar}>
           {showSearchbar && (
             <Input
