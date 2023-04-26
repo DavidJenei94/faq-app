@@ -16,7 +16,6 @@
 
   .list-navigation {
     button {
-      padding: 8px;
       margin: 8px 16px;
     }
   }
@@ -25,7 +24,6 @@
     .new-question-button {
       @include buttonStyles.defaultButton;
 
-      padding: 8px;
       position: fixed;
       bottom: 40px;
       right: 40px;
