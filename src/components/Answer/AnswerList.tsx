@@ -18,6 +18,7 @@ const AnswerList = ({questionId}:AnswerListProp) => {
   
   return (
     <div className={styles.answers}>
+      <h2>Answers:</h2>
       {questionAnswers.map((answer) => (
         <SingleAnswer key={answer.id} answer={answer}/>
       ))}

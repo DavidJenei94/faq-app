@@ -40,9 +40,11 @@ const CreateAnswer = ({ questionId }: CreateAnswerProp) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
+      <label>New answer:</label>
+      <br />
       <Textarea value={answer} onChange={handleAnswerChange} placeholder='Add new answer...'/>
       <br />
-      <Button type="submit">Add answer</Button>
+      <Button type="submit">Answer</Button>
     </form>
   );
 };
