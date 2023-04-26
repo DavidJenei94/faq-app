@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux-hooks';
+import { Question } from '../../models/Question.model';
+import useDelayLoading from '../../hooks/useDelayLoading';
 
 import QuestionCard from '../Question/QuestionCard';
 import Button from '../UI/Button';
@@ -11,9 +13,13 @@ import addIcon from '../../assets/icons/add-icon.png';
 const List = () => {
   const navigate = useNavigate();
 
-  const questions = useAppSelector((state) => state.questions);
+  const questions: Question[] = useAppSelector((state) => state.questions);
+  const initialized: boolean = useAppSelector((state) => state.initialized);
+
+  const delayLoading = useDelayLoading();
 
   const [page, setPage] = useState(0);
+
   const questionsPerPage = 2;
   const startIndex = page * questionsPerPage;
   const endIndex = startIndex + questionsPerPage;
@@ -31,6 +37,14 @@ const List = () => {
   const handleCreateQuestion = () => {
     navigate('/question/create');
   };
+
+  if (!delayLoading) {
+    return null;
+  }
+
+  if (!initialized && delayLoading) {
+    return <>Loading...</>;
+  }
 
   return (
     <div className={styles.container}>
