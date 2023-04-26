@@ -1,24 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import useDelayLoading from '../../hooks/useDelayLoading';
 import { Question, defaultQuestion } from '../../models/Question.model';
 import { faqActions } from '../../store/faq-redux';
+import FeedbackContext from '../../store/feedback-context';
 
 import AnswerList from '../Answer/AnswerList';
 import CreateAnswer from '../Answer/CreateAnswer';
 import Actions from '../Actions/Actions';
-
-import styles from './QuestionPage.module.scss';
 import Textarea from '../UI/Textarea';
 import Button from '../UI/Button';
 import Input from '../UI/Input';
+
+import styles from './QuestionPage.module.scss';
 
 const QuestionPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
+
+  const feedbackCtx = useContext(FeedbackContext);
 
   const questions: Question[] = useAppSelector((state) => state.questions);
   const initialized: boolean = useAppSelector((state) => state.initialized);
@@ -69,7 +72,7 @@ const QuestionPage = () => {
   const handleEditSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (question.questionTitle === "" || question.questionDetails === "") {
+    if (question.questionTitle === '' || question.questionDetails === '') {
       return null;
     }
 
@@ -79,11 +82,15 @@ const QuestionPage = () => {
 
     dispatch(faqActions.editQuestion(question));
 
+    feedbackCtx.showMessage('Question edited', 5000);
+
     setEditMode(false);
   };
 
   const handleDelete = () => {
     dispatch(faqActions.deleteQuestion(question.id));
+
+    feedbackCtx.showMessage('Question deleted', 5000);
 
     navigate('/');
   };
@@ -117,14 +124,14 @@ const QuestionPage = () => {
           <Input
             value={question.questionTitle}
             onChange={handleQuestionTitleChange}
-            placeholder='Question?'
+            placeholder="Question?"
             maxLength={100}
             required
           />
           <Textarea
             value={question.questionDetails}
             onChange={handleQuestionDetailsChange}
-            placeholder='Question details...'
+            placeholder="Question details..."
             required
           />
           <Button type="submit">Ok</Button>

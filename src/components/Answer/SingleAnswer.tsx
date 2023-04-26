@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Answer } from '../../models/Answer.model';
 import { useAppDispatch } from '../../hooks/redux-hooks';
 import { faqActions } from '../../store/faq-redux';
+import FeedbackContext from '../../store/feedback-context';
 
 import Button from '../UI/Button';
 import Textarea from '../UI/Textarea';
@@ -14,6 +15,8 @@ interface SingleAnswerProp {
 }
 const SingleAnswer = ({ answer }: SingleAnswerProp) => {
   const dispatch = useAppDispatch();
+
+  const feedbackCtx = useContext(FeedbackContext);
 
   const [editMode, setEditMode] = useState<boolean>(false);
   const [answerText, setAnswerText] = useState<string>('');
@@ -39,11 +42,15 @@ const SingleAnswer = ({ answer }: SingleAnswerProp) => {
 
     dispatch(faqActions.editAnswer(editedAnswer));
 
+    feedbackCtx.showMessage('Answer edited', 5000);
+
     setEditMode(false);
   };
 
   const handleDelete = () => {
     dispatch(faqActions.deleteAnswer(answer.id));
+
+    feedbackCtx.showMessage('Answer deleted', 5000);
   };
 
   const handleUpvote = () => {

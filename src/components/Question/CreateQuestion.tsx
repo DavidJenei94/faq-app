@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { faqActions } from '../../store/faq-redux';
 import { Question, defaultQuestion } from '../../models/Question.model';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { useNavigate } from 'react-router-dom';
 import { selectNewId } from '../../utils/general.utils';
+import FeedbackContext from '../../store/feedback-context';
 
 import Input from '../UI/Input';
 import Textarea from '../UI/Textarea';
@@ -14,6 +15,8 @@ import styles from './CreateQuestion.module.scss';
 const CreateQuestion = () => {
   const dispatch = useAppDispatch();
   const questions = useAppSelector((state) => state.questions);
+
+  const feedbackCtx = useContext(FeedbackContext);
 
   const navigate = useNavigate();
 
@@ -52,6 +55,8 @@ const CreateQuestion = () => {
     };
 
     dispatch(faqActions.addQuestion(newQuestion));
+
+    feedbackCtx.showMessage('Question asked', 5000);
 
     navigate('/');
   };

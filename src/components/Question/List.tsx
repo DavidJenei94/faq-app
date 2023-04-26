@@ -26,7 +26,7 @@ const List = () => {
 
   const [page, setPage] = useState(0);
 
-  const questionsPerPage = 2;
+  const questionsPerPage = 10;
   const startIndex = page * questionsPerPage;
   const endIndex = startIndex + questionsPerPage;
 

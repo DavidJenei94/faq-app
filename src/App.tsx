@@ -1,3 +1,4 @@
+import { useEffect, useContext } from 'react';
 import {
   Navigate,
   RouterProvider,
@@ -5,19 +6,22 @@ import {
 } from 'react-router-dom';
 import { useAppDispatch } from './hooks/redux-hooks';
 import { faqActions } from './store/faq-redux';
-import { useEffect } from 'react';
 import { Question } from './models/Question.model';
 import { Answer } from './models/Answer.model';
+import FeedbackContext from './store/feedback-context';
 
 import MainWrapper from './components/Layout/MainWrapper';
 import QuestionPage from './components/Question/QuestionPage';
 import List from './components/Question/List';
 import CreateQuestion from './components/Question/CreateQuestion';
+import FeedbackBar from './components/UI/FeedbackBar';
 
 import styles from './App.module.scss';
 
 function App() {
   const dispatch = useAppDispatch();
+
+  const ctx = useContext(FeedbackContext);
 
   useEffect(() => {
     const questionsStored = localStorage.getItem('questions');
@@ -59,6 +63,11 @@ function App() {
   return (
     <>
       <div className={styles.app}>
+        {ctx.isMessageShown && (
+          <FeedbackBar className={ctx.isSlidingDown ? 'slide-down' : ''}>
+            {ctx.message}
+          </FeedbackBar>
+        )}
         <RouterProvider router={router} />
       </div>
     </>
