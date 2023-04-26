@@ -1,0 +1,12 @@
+@use '../../utils/styles.variables' as styles;
+
+.actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (max-width: styles.$smallScreenSize) {
+    display: block;
+  }
+}

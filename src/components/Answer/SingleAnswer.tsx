@@ -7,7 +7,9 @@ import Button from '../UI/Button';
 import Textarea from '../UI/Textarea';
 
 import styles from './SingleAnswer.module.scss';
-import Vote from '../Vote/Vote';
+import Vote from '../Actions/Vote';
+import Modify from '../Actions/Modify';
+import Actions from '../Actions/Actions';
 
 interface SingleAnswerProp {
   answer: Answer;
@@ -56,25 +58,21 @@ const SingleAnswer = ({ answer }: SingleAnswerProp) => {
 
   return (
     <div key={answer.id} className={styles.answer}>
-      {!editMode && <p className={styles["answer-text"]}>{answer.answer}</p>}
+      {!editMode && <p className={styles['answer-text']}>{answer.answer}</p>}
       {editMode && (
         <form onSubmit={handleEditSubmit} className={styles['edit-form']}>
           <Textarea value={answerText} onChange={handleAnswerTextChange} />
           <Button type="submit">Ok</Button>
         </form>
       )}
-      <div className={styles.actions}>
-        <Vote
-          handleUpvote={handleUpvote}
-          handleDownvote={handleDownvote}
-          upvotes={answer.upvotes}
-          downvotes={answer.downvotes}
-        />
-        <div className={styles.modify}>
-          <Button onClick={handleEditClick}>Edit</Button>
-          <Button onClick={handleDelete}>Delete</Button>
-        </div>
-      </div>
+      <Actions
+        handleUpvote={handleUpvote}
+        handleDownvote={handleDownvote}
+        upvotes={answer.upvotes}
+        downvotes={answer.downvotes}
+        handleDelete={handleDelete}
+        handleEdit={handleEditClick}
+      />
     </div>
   );
 };
