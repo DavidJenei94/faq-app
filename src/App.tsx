@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from 'react-router-dom';
 import { useAppDispatch } from './hooks/redux-hooks';
 import { faqActions } from './store/faq-redux';
 import { useEffect } from 'react';
@@ -43,6 +47,10 @@ function App() {
         {
           path: 'question/:id',
           element: <QuestionPage />,
+        },
+        {
+          path: '*',
+          element: <Navigate to="/" replace />,
         },
       ],
     },
