@@ -44,6 +44,38 @@ const faqSlice = createSlice({
 
       localStorage.setItem('questions', JSON.stringify(state.questions));
     },
+    editQuestion: (state: FaqState, action: PayloadAction<Question>) => {
+      const questionId = state.questions.findIndex(
+        (question) => question.id === action.payload.id
+      );
+      state.questions[questionId] = action.payload;
+
+      localStorage.setItem('questions', JSON.stringify(state.questions));
+    },
+    deleteQuestion: (state: FaqState, action: PayloadAction<number>) => {
+      const questionId = state.questions.findIndex(
+        (question) => question.id === action.payload
+      );
+      state.questions.splice(questionId, 1);
+
+      localStorage.setItem('questions', JSON.stringify(state.questions));
+    },
+    voteQuestion: (
+      state: FaqState,
+      action: PayloadAction<{ id: number; vote: number }>
+    ) => {
+      const questionId = state.questions.findIndex(
+        (question) => question.id === action.payload.id
+      );
+      if (action.payload.vote >= 1) {
+        state.questions[questionId].upvotes += action.payload.vote;
+      }
+      if (action.payload.vote <= -1) {
+        state.questions[questionId].downvotes -= action.payload.vote;
+      }
+
+      localStorage.setItem('questions', JSON.stringify(state.questions));
+    },
     addAnswer: (state: FaqState, action: PayloadAction<Answer>) => {
       state.answers = [...state.answers, action.payload];
 

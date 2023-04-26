@@ -33,6 +33,18 @@ const CreateQuestion = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (questionTitle === "" || questionDetails === "") {
+      console.log("empty text");
+      return null;
+      
+    }
+
+    if (questionTitle.length > 100) {
+      console.log("long text");
+      
+      return null;
+    }
+
     const newQuestion: Question = {
       ...defaultQuestion,
       id: selectNewId(questions),
@@ -52,12 +64,15 @@ const CreateQuestion = () => {
         value={questionTitle}
         placeholder="Question..."
         onChange={handleTitleChange}
+        maxLength={100}
+        required
       />
       <br />
       <Textarea
         value={questionDetails}
         placeholder="Question details..."
         onChange={handleDetailsChange}
+        required
       />
       <br />
       <Button type="submit">Ask question</Button>
