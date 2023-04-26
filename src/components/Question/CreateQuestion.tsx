@@ -33,15 +33,14 @@ const CreateQuestion = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (questionTitle === "" || questionDetails === "") {
-      console.log("empty text");
+    if (questionTitle === '' || questionDetails === '') {
+      console.log('empty text');
       return null;
-      
     }
 
     if (questionTitle.length > 100) {
-      console.log("long text");
-      
+      console.log('long text');
+
       return null;
     }
 
@@ -58,25 +57,28 @@ const CreateQuestion = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <Input
-        type="text"
-        value={questionTitle}
-        placeholder="Question..."
-        onChange={handleTitleChange}
-        maxLength={100}
-        required
-      />
-      <br />
-      <Textarea
-        value={questionDetails}
-        placeholder="Question details..."
-        onChange={handleDetailsChange}
-        required
-      />
-      <br />
-      <Button type="submit">Ask question</Button>
-    </form>
+    <div className={styles.add}>
+      <h1>Ask Question</h1>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <Input
+          type="text"
+          value={questionTitle}
+          placeholder="Question..."
+          onChange={handleTitleChange}
+          maxLength={100}
+          required
+        />
+        <br />
+        <Textarea
+          value={questionDetails}
+          placeholder="Question details..."
+          onChange={handleDetailsChange}
+          required
+        />
+        <br />
+        <Button type="submit">Ask question</Button>
+      </form>
+    </div>
   );
 };
 

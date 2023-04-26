@@ -1,13 +1,19 @@
-.form {
-  input {
-    min-width: 200px;
-    margin-bottom: 16px;
+.add {
+  h1 {
+    margin-top: 0;
   }
+  
+  .form {
+    input {
+      min-width: 200px;
+      margin-bottom: 16px;
+    }
 
-  textarea {
-    width: 50%;
-    min-width: 200px;
-    min-height: 50px;
-    margin-bottom: 16px;
+    textarea {
+      width: 50%;
+      min-width: 200px;
+      min-height: 50px;
+      margin-bottom: 16px;
+    }
   }
 }
