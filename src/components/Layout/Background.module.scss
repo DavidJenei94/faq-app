@@ -1,0 +1,44 @@
+@use '../../utils/styles.variables' as styles;
+
+@mixin baseTriangle {
+  position: fixed;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  opacity: 0.5;
+}
+
+.triangle {
+  &-primary {
+    @include baseTriangle;
+    border-bottom: 16px solid styles.$primaryColor;
+    animation: move 10s linear infinite;
+  }
+  &-primary-reverse {
+    @include baseTriangle;
+    border-bottom: 16px solid styles.$primaryColor;
+    animation: move 10s linear infinite reverse;
+  }
+
+  &-secondary {
+    @include baseTriangle;
+    border-bottom: 16px solid styles.$secondaryColor;
+    animation: move 10s linear infinite;
+  }
+  &-secondary-reverse {
+    @include baseTriangle;
+    border-bottom: 16px solid styles.$secondaryColor;
+    animation: move 10s linear infinite reverse;
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  100% {
+    transform: rotate(360deg) translate(0, 0);
+  }
+}

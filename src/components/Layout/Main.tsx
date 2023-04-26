@@ -1,3 +1,4 @@
+import Background from './Background';
 import styles from './Main.module.scss';
 
 interface MainProps {
@@ -5,7 +6,12 @@ interface MainProps {
 }
 
 const Main = ({ children }: MainProps) => {
-  return <div className={styles.main}>{children}</div>;
+  return (
+    <div className={styles.main}>
+      <Background />
+      {children}
+    </div>
+  );
 };
 
 export default Main;

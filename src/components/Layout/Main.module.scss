@@ -1,6 +1,8 @@
 @use '../../utils/styles.variables' as styles;
 
 .main {
+  overflow: hidden;
+  z-index: 1;
   position: relative;
   top: styles.$navHeight;
   max-width: styles.$contentMaxWidth;
@@ -10,5 +12,4 @@
   min-height: calc(100vh - styles.$navHeight - 16px);
 
   background-color: transparent;
-  // background: styles.$backgroundColor;
 }
