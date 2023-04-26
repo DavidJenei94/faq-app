@@ -53,8 +53,8 @@ nav {
         @media only screen and (max-width: styles.$smallScreenSize) {
           position: fixed;
           top: calc(styles.$navHeight + 8px);
-          left: 5vw;
-          width: 85vw;
+          left: 5%;
+          width: 90%;
         }
       }
     }
