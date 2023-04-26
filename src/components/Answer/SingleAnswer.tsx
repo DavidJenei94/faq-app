@@ -5,11 +5,9 @@ import { faqActions } from '../../store/faq-redux';
 
 import Button from '../UI/Button';
 import Textarea from '../UI/Textarea';
+import Actions from '../Actions/Actions';
 
 import styles from './SingleAnswer.module.scss';
-import Vote from '../Actions/Vote';
-import Modify from '../Actions/Modify';
-import Actions from '../Actions/Actions';
 
 interface SingleAnswerProp {
   answer: Answer;
