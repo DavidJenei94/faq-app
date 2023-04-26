@@ -4,8 +4,23 @@
   width: 300px;
   padding: 12px;
   border: 1px solid styles.$contrastColor;
-  border-radius: 4px;
-  box-shadow: styles.$mainLightBoxShadow;
+  border-radius: 12px;
+  box-shadow: 5px 5px 0px 0px rgb(0, 0, 0);
+
+  background: styles.$boxBackgroundColor;
+
+  &:hover {
+    position: relative;
+    cursor: pointer;
+    top: 5px;
+    left: 5px;
+    box-shadow: 0px 0px 0px 0px rgb(0, 0, 0);
+  }
+
+  h2 {
+    margin: 8px 0;
+    font-size: 24px;
+  }
 
   img {
     width: 16px;

@@ -1,14 +1,12 @@
 $contentMaxWidth: 1000px;
 
-$primaryColor: #120077;
-$primaryDarkColor: #0c0050;
-$primaryLightColor: #2500fa;
-$contrastColor: #fff;
-$secondaryColor: #dff800;
+$primaryColor: #9599E2;
+$secondaryColor: #8BC6EC;
+$contrastColor: #000000;
 $disabledColor: #616161;
 
-$mainLightBoxShadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.25);
-$mainStrongBoxShadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.5);
+$backgroundColor: linear-gradient(135deg, $secondaryColor, $primaryColor);
+$boxBackgroundColor: linear-gradient(135deg, $primaryColor, $secondaryColor);
 
 $smallScreenSize: 500px;
 

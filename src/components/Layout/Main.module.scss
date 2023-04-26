@@ -4,8 +4,11 @@
   position: relative;
   top: styles.$navHeight;
   max-width: styles.$contentMaxWidth;
-  margin: 16px auto;
-  padding: 0px 12px;
+  margin: 0 auto;
+  padding: 16px;
 
-  background-color: styles.$primaryColor;
+  min-height: calc(100vh - styles.$navHeight - 16px);
+
+  background-color: transparent;
+  // background: styles.$backgroundColor;
 }

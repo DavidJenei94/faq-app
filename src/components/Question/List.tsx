@@ -14,7 +14,7 @@ const List = () => {
   const questions = useAppSelector((state) => state.questions);
 
   const [page, setPage] = useState(0);
-  const questionsPerPage = 5;
+  const questionsPerPage = 2;
   const startIndex = page * questionsPerPage;
   const endIndex = startIndex + questionsPerPage;
 
@@ -55,7 +55,11 @@ const List = () => {
         </Button>
       </div>
       <div className={styles['create-question']}>
-        <Button title="Create new question" onClick={handleCreateQuestion}>
+        <Button
+          title="Create new question"
+          onClick={handleCreateQuestion}
+          className={styles['new-question-button']}
+        >
           <img src={addIcon} alt="Create new question button" />
         </Button>
       </div>
