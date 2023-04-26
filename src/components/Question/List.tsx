@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
 import { Question } from '../../models/Question.model';
 import useDelayLoading from '../../hooks/useDelayLoading';
+import { faqActions } from '../../store/faq-redux';
 
 import QuestionCard from '../Question/QuestionCard';
 import Button from '../UI/Button';
 
 import styles from './List.module.scss';
 import addIcon from '../../assets/icons/add-icon.png';
-import { faqActions } from '../../store/faq-redux';
 
 const List = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const List = () => {
 
   const [page, setPage] = useState(0);
 
-  const questionsPerPage = 10;
+  const questionsPerPage = 12;
   const startIndex = page * questionsPerPage;
   const endIndex = startIndex + questionsPerPage;
 
