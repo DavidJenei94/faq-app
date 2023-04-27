@@ -24,11 +24,11 @@ const List = () => {
 
   const delayLoading = useDelayLoading();
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState<number>(0);
 
-  const questionsPerPage = 12;
-  const startIndex = page * questionsPerPage;
-  const endIndex = startIndex + questionsPerPage;
+  const questionsPerPage: number = 12;
+  const startIndex: number = page * questionsPerPage;
+  const endIndex: number = startIndex + questionsPerPage;
 
   useEffect(() => {
     setPage(0);
