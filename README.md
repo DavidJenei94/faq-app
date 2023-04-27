@@ -35,3 +35,4 @@ Some **useful hooks** can be found in faq-app\src\hooks folder like useDimension
 - user handling (now the user can edit/delete all questions and answers and can vote any time)
 - backend and database for the data handling
 - improve search functionality to include question detail as well
+- labeling questions and add label searching option
